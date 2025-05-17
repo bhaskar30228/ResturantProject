@@ -4,7 +4,6 @@ const customerModelSchema=mongoose.Schema({
     username:{
         type:String,
         required:[true, "First name is required"],
-        unique:true
     },
     email:{
         type:String,
@@ -15,10 +14,10 @@ const customerModelSchema=mongoose.Schema({
         type:String,
         required:[true,"password is required"]
     },
-    gender:{
+    userType:{
         type:String,
-        enum:["Male","Female","Other"],
-        default:"Female"
+        enum:["Customer","Owner"],
+        default:"Customer"
     }
 })
 

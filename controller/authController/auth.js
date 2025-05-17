@@ -7,7 +7,7 @@ exports.getSignInPage = (req, res) => {
          title:"SignUp",
          isLoggedIn:false,
          errors:[],
-         oldInput:{username:"",email:"",gender:""},
+         oldInput:{username:"",email:"",userType:""},
          user:{}
         });
 }
@@ -15,7 +15,10 @@ exports.getSignInPage = (req, res) => {
 exports.getLoginPage = (req, res) => {
     res.render('auth/login', {
         title: 'Login Page',
-        message: 'Please log in to continue.'
+        isLoggedIn:false,
+        errors:[],
+        oldInput:{email:""},
+        user:{}
     });
 }
 
@@ -53,10 +56,10 @@ exports.postSignInPage =[check("username")
         return true
     }),
     
-    check("gender")
+    check("userType")
     .notEmpty()
     .withMessage("Please select the gender")
-    .isIn(["Male","Female","Other"])
+    .isIn(["Customer","Owner"])
     .withMessage("Invalid user type"),
 
     check("agree")
@@ -70,7 +73,19 @@ exports.postSignInPage =[check("username")
     }),
 
     async(req,res,next)=>{
-        const {username,password,email,gender}=req.body
+        const {username,password,email,userType}=req.body
+        if (req.body.userType === "Owner") {
+            const ownerCount = await Users.countDocuments({ userType: "Owner" });
+            if (ownerCount >= 2) {
+                return res.status(422).render('auth/signUp', {
+                    title: "Sign up",
+                    isLoggedIn: false,
+                    errors: ["Owner limit is full. No more owners can be created."],
+                    oldInput: { username: req.body.username, email: req.body.email, userType: req.body.userType },
+                    user: {}
+                });
+            }
+        }
         const exists=await Users.findOne({email})
         if(exists){
             return res.render('auth/signUp',{
@@ -89,13 +104,13 @@ exports.postSignInPage =[check("username")
                 title:"Sign up",
                 isLoggedIn:false,
                 errors:errors.array().map(err=>err.msg),
-                oldInput:{username,password,email,gender},
+                oldInput:{username,password,email,userType},
                 user:{}
             })
         }
        bcrypt.hash(password,12)
        .then(hashedPassword=>{
-            const user=new Users({username,password:hashedPassword,email,gender})
+            const user=new Users({username,password:hashedPassword,email,userType})
             return user.save()
        })
        .then(()=>{
@@ -107,7 +122,7 @@ exports.postSignInPage =[check("username")
             title:"Sign up",
             isLoggedIn:false,
             errors:[err.message],
-            oldInput:{username,email,password,gender},
+            oldInput:{username,email,password,userType},
             user:{}
         })
        })
@@ -127,7 +142,7 @@ exports.postLoginPage = async(req, res ,next) => {
             user:{}
         })
     }
-    isMatch=bcrypt.compare(password,user.password)
+    const isMatch=await bcrypt.compare(password,user.password)
     if(!isMatch){
         return res.status(422).render('auth/login',{
             title:"Login",
@@ -141,4 +156,13 @@ exports.postLoginPage = async(req, res ,next) => {
     req.session.user=user
     await req.session.save()
     res.redirect('/')
+}
+
+exports.postLogOutPage = (req, res) => {
+    req.session.destroy(err=>{
+        if(err){
+            console.log("Error while destroying session",err);
+        }
+        res.redirect('/auth/login')
+    })
 }

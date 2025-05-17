@@ -97,17 +97,18 @@
 
 <body>
   <%- include('../partials/nav') %>
-
+  
   <div class="signin-container">
+    <%- include('../partials/error') %>
     <h2><i class="fas fa-utensils"></i> Restaurant Login</h2>
-    <form action="/auth/login" method="POST">
+    <form action="/auth/login" method="POST" autocomplete="off">
       <div class="input-group">
         <i class="fas fa-envelope"></i>
-        <input type="email" name="email" placeholder="Email" required>
+        <input type="email" name="email" placeholder="Email" required autocomplete="off" value="<%= oldInput.email?oldInput.email:'' %>">
       </div>
       <div class="input-group">
         <i class="fas fa-lock"></i>
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="password" placeholder="Password" required autocomplete="new-password">
       </div>
       <button class="signin-btn" type="submit">
         <i class="fas fa-sign-in-alt"></i> Sign In

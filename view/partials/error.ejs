@@ -1,0 +1,12 @@
+<% if(errors.length>0){ %>
+    <div>
+        <Strong>Error!</Strong>
+        <span>
+            <% errors.forEach(err=>{ %>
+                <li>
+                    <%= err %> 
+                </li>
+           <% }) %> 
+        </span>
+    </div>
+<%}%>

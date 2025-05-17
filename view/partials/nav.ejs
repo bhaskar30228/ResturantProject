@@ -99,14 +99,39 @@
       <span class="navbar-title">Captain Katora</span>
     </div>
     <div class="navbar-links">
-      <a href="/auth/signUp">Home</a>
-      <a href="/auth/signUp">About</a>
-      <a href="/auth/signUp">Contact-us</a>
-      <a href="/auth/signUp">Add menu</a>
-      <a href="/auth/signUp">Sign Up</a>
-      <a href="/auth/login">Login</a>
-      <a href="/auth/signUp">Logout</a>
-    </div>
+  <a href="/">Home</a>
+
+  <% if (isLoggedIn) { %>
+    <% if (user && user.userType === "Customer") { %>
+      <a href="/orders">My Orders</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact Us</a>
+    <% } else if (user && user.userType === "Owner") { %>
+      <a href="/menu/add">Add Menu</a>
+    <% } %>
+
+    <!-- Logout button -->
+    <form action="/auth/logout" method="post" style="display:inline;">
+      <button type="submit" style="
+        background: rgba(255,255,255,0.05);
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 0.5rem 1.2rem;
+        border-radius: 22px;
+        border: 1.5px solid #ffd700;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+      " onmouseover="this.style.background='#ffd700';this.style.color='#b22222';this.style.borderColor='#fff';" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.color='#fff';this.style.borderColor='#ffd700';">Logout</button>
+    </form>
+
+  <% } else { %>
+    <!-- If not logged in -->
+    <a href="/auth/signUp">Sign Up</a>
+    <a href="/auth/login">Login</a>
+  <% } %>
+</div>
   </nav>
 </body>
 </html>
