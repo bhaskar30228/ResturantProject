@@ -1,0 +1,112 @@
+<%- include('head') %>
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f8e9d2;
+      font-family: 'Noto Sans SC', Arial, sans-serif;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(90deg, #b22222 60%, #22223b 100%);
+      padding: 0.7rem 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .navbar-logo img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+    .navbar-title {
+      font-family: 'Pirata One', cursive;
+      font-size: 2rem;
+      color: #ffd700;
+      letter-spacing: 2px;
+      text-shadow: 1px 2px 6px #22223b;
+    }
+    .navbar-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .navbar-links a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 0.5rem 1.2rem;
+      border-radius: 22px;
+      transition: background 0.2s, color 0.2s;
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid #ffd700;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .navbar-links a:hover {
+      background: #ffd700;
+      color: #b22222;
+      border-color: #fff;
+    }
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+      }
+      .navbar-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.7rem;
+        margin-top: 0.5rem;
+      }
+      .navbar-links a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <!-- Pirate Captain Bowl SVG Logo -->
+      <a href="/">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Captain Katora Logo">
+          <ellipse cx="32" cy="44" rx="22" ry="10" fill="#fff3c4" stroke="#b22222" stroke-width="2"/>
+          <ellipse cx="32" cy="40" rx="18" ry="7" fill="#ffd700" stroke="#b22222" stroke-width="1.5"/>
+          <ellipse cx="32" cy="38" rx="14" ry="4" fill="#fff" opacity="0.7"/>
+          <path d="M16 44c0 8 32 8 32 0" stroke="#b22222" stroke-width="2" fill="none"/>
+          <!-- Pirate hat -->
+          <path d="M16 28 Q32 10 48 28 Q40 24 24 28 Z" fill="#22223b" stroke="#ffd700" stroke-width="2"/>
+          <!-- Skull on hat -->
+          <circle cx="32" cy="22" r="4" fill="#fff" stroke="#b22222" stroke-width="1"/>
+          <ellipse cx="30.5" cy="24.5" rx="1" ry="1.5" fill="#b22222"/>
+          <ellipse cx="33.5" cy="24.5" rx="1" ry="1.5" fill="#b22222"/>
+          <rect x="31" y="26" width="2" height="1" rx="0.5" fill="#b22222"/>
+          <!-- Spoon (handle) -->
+          <rect x="46" y="32" width="2" height="14" rx="1" fill="#ffd700" stroke="#b22222" stroke-width="0.7" transform="rotate(15 47 39)"/>
+        </svg>
+      </a>
+      <span class="navbar-title">Captain Katora</span>
+    </div>
+    <div class="navbar-links">
+      <a href="/auth/signUp">Home</a>
+      <a href="/auth/signUp">About</a>
+      <a href="/auth/signUp">Contact-us</a>
+      <a href="/auth/signUp">Add menu</a>
+      <a href="/auth/signUp">Sign Up</a>
+      <a href="/auth/login">Login</a>
+      <a href="/auth/signUp">Logout</a>
+    </div>
+  </nav>
+</body>
+</html>

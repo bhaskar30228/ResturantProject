@@ -1,0 +1,77 @@
+<%- include('../partials/head') %>
+
+<link rel="stylesheet" href="/styles/menu.css">
+    <style>
+        body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; }
+        .menu-container { max-width: 800px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);}
+        h1 { text-align: center; color: #333; }
+        .menu-section { margin-bottom: 32px; }
+        .menu-section h2 { color: #b22222; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+        .menu-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dotted #ddd; }
+        .menu-item:last-child { border-bottom: none; }
+        .item-name { font-weight: 500; }
+        .item-price { color: #b22222; }
+        .item-desc { font-size: 0.95em; color: #666; margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <div class="menu-container">
+        <h1>Our Menu</h1>
+
+        <div class="menu-section">
+            <h2>Starters</h2>
+            <div class="menu-item">
+                <span>
+                    <span class="item-name">Tomato Soup</span>
+                    <span class="item-desc">Fresh tomatoes, basil, cream</span>
+                </span>
+                <span class="item-price">$5</span>
+            </div>
+            <div class="menu-item">
+                <span>
+                    <span class="item-name">Bruschetta</span>
+                    <span class="item-desc">Grilled bread, garlic, tomatoes, olive oil</span>
+                </span>
+                <span class="item-price">$7</span>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2>Main Course</h2>
+            <div class="menu-item">
+                <span>
+                    <span class="item-name">Grilled Chicken</span>
+                    <span class="item-desc">Served with veggies and mashed potatoes</span>
+                </span>
+                <span class="item-price">$15</span>
+            </div>
+            <div class="menu-item">
+                <span>
+                    <span class="item-name">Pasta Alfredo</span>
+                    <span class="item-desc">Creamy Alfredo sauce, parmesan, fettuccine</span>
+                </span>
+                <span class="item-price">$13</span>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2>Desserts</h2>
+            <div class="menu-item">
+                <span>
+                    <span class="item-name">Chocolate Lava Cake</span>
+                    <span class="item-desc">Warm chocolate cake with molten center</span>
+                </span>
+                <span class="item-price">$6</span>
+            </div>
+            <div class="menu-item">
+                <span>
+                    <span class="item-name">Cheesecake</span>
+                    <span class="item-desc">Classic New York style</span>
+                </span>
+                <span class="item-price">$6</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
